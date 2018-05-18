@@ -19,7 +19,7 @@ module.exports = {
     // path: path.join(__dirname, "../build/public/js/"),  // 两种写法都可以
     // filename: '[name]-[hash:5].js'
     path: path.join(__dirname, "../build/"),
-    filename: "public/js/[name].js"
+    filename: "public/js/[name]-[hash:5].js"
   },
   module: {
     rules: [
@@ -54,11 +54,11 @@ module.exports = {
     new LiveReloadPlugin({
       appendScriptTag: true
     }),
-    new ExtractTextPlugin("public/css/[name].css"), // build文件夹里
+    new ExtractTextPlugin("public/css/[name]-[hash:5].css"), // build文件夹里
     // 提取公共代码块
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor",
-      filename: "public/js/common/vendor.min.js"
+      filename: "public/js/common/vendor-[hash:5].min.js"
     }),
     new HtmlWebpackPlugin({
       filename: "./views/layout.html",
@@ -86,22 +86,22 @@ module.exports = {
       filename: "./widget/star.html",
       template: "src/widget/star.html",
       inject: false
-    }),
-    new Manifest({
-      cache: [
-        "./public/css/vendor.css" // 注意这里的写法
-      ],
-      //Add time in comments.
-      timestamp: true,
-      // 生成的文件名字，选填
-      // The generated file name, optional.
-      filename: "cache.manifest",
-      // 注意*星号前面用空格隔开
-      network: [" *"],
-      // manifest 文件中添加注释
-      // Add notes to manifest file.
-      headcomment: "praise4",
-      master: ["./views/layout.html"]
     })
+    // new Manifest({
+    //   cache: [
+    //     "./public/css/vendor-[hash:5].css" // 注意这里的写法
+    //   ],
+    //   //Add time in comments.
+    //   timestamp: true,
+    //   // 生成的文件名字，选填
+    //   // The generated file name, optional.
+    //   filename: "cache.manifest",
+    //   // 注意*星号前面用空格隔开
+    //   network: [" *"],
+    //   // manifest 文件中添加注释
+    //   // Add notes to manifest file.
+    //   headcomment: "praise4",
+    //   master: ["./views/layout.html"]
+    // })
   ]
 };
