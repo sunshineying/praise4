@@ -64,6 +64,7 @@ module.exports = function(templateParams) {
     "{% block content %}{% include '../widget/index.html' %}{% endblock %}" +
     "{% block script %}" +
     "<script>" +
+    "console.log(9999);"+
     "(function(){ var flag=false;" +
     "var scriptsshow = [" +
     webAssetsHelp.scriptsshow +

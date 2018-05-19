@@ -5,6 +5,7 @@ const cleanWebpackPlugin = require("clean-webpack-plugin");
 const LiveReloadPlugin = require("webpack-livereload-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const Manifest = require("webpack-manifest");
+
 // 开发版本不压缩
 
 module.exports = {
@@ -89,7 +90,7 @@ module.exports = {
     }),
     new Manifest({
       cache: [
-        "../public/css/vendor.css" // 注意这里的写法
+        "./public/css/vendor.css" // 注意这里的写法
       ],
       //Add time in comments.
       timestamp: true,
@@ -101,7 +102,7 @@ module.exports = {
       // manifest 文件中添加注释
       // Add notes to manifest file.
       headcomment: "praise4",
-      master: ["../views/layout.html"]
+      master: ["./views/layout.html"]
     })
   ]
 };
