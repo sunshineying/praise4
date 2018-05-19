@@ -84,14 +84,16 @@ module.exports = function(templateParams) {
     "for(let k=0; k<scriptsshow.length; k++){" +
     "console.log(4);"+
     "let b = scriptsshow[k];" +
+    "console.log(b, flag);"+
     "axios.get(b)." +
     "then(function(data) { console.log(5);localStorage.setItem(b,data.data);})" +
     "} break;" + // end for
     "}" + // end else
     "}" + // end for
+    "console.log(flag);"+
     "if(flag){" +
     "console.log(6);"+
-    "LazyLoad.js(scriptsshow, function() {});" +
+    // "LazyLoad.js(scriptsshow, function() {});" +
     "}" // end if
     "})()" + // 立即执行函数, end function
     "</script>" +
