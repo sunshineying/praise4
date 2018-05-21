@@ -8,9 +8,8 @@ module.exports = function(templateParams) {
     "{% endblock %}"+
     "{% block content %}{% include '../widget/star.html' %}{% endblock %}"+
     "{% block script %}"+
-    // webAssetsHelp.scripts+
     "<script>" +
-    "(function(){" +
+    "(function(){var flag=false;" +
     "var scriptsshow = [" +
     webAssetsHelp.scriptsshow +
     "];" +
@@ -20,10 +19,17 @@ module.exports = function(templateParams) {
     '$("<s"+"cript>"+localStorage.getItem(a)+"</scri"+"pt>").attr({type:"text/javascript",id:i}).appendTo($("head").remove("#"+i));' +
     "}" + // end if
     "else {" +
-    "$.getScript({url:a,success: function(data) { localStorage.setItem(a, data);}});" +
-    // "$.getScript(a,function(data) { localStorage.setItem(a, data);});" +
+    "localStorage.clear(); flag = true;" +
+    "for(let k=0; k<scriptsshow.length; k++){" +
+    "let b = scriptsshow[k];" +
+    "axios.get(b)." +
+    "then(function(data) { localStorage.setItem(b,data.data);})" +
+    "} break;" + // end for
     "}" + // end else
     "}" + // end for
+    "if(flag){" +
+    "LazyLoad.js(scriptsshow, function() {});" +
+    "}" + // end if
     "})()" + // 立即执行函数, end function
     "</script>" +
     "{% endblock %}";
